@@ -4,14 +4,14 @@ services:
     image: postgres:17
     user: root
     environment:
-      - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo18@2024
+      - POSTGRES_USER=apitools
+      - POSTGRES_PASSWORD=apitools@2024
       - POSTGRES_DB=postgres
     restart: always             # run as a service
     volumes:
         - ./postgresql:/var/lib/postgresql/data
 
-  odoo18:
+  apitools:
     image: odoo:18
     user: root
     depends_on:
@@ -23,13 +23,13 @@ services:
     command: --
     environment:
       - HOST=db
-      - USER=odoo
-      - PASSWORD=odoo18@2024
+      - USER=apitools
+      - PASSWORD=apitools@2024
     volumes:
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
       # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
-      - ./addons:/mnt/extra-addons
+      - ./apitools:/mnt/extra-addons
       - ./etc:/etc/odoo
     restart: always             # run as a service
     
